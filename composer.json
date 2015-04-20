@@ -1,6 +1,6 @@
 {
 	"name": "victor/vlite",
 	"autoload": {
-		"psr-0":{"Xend":"lib"}
+		"psr-0":{"Xend":"lib","Application":"lib"}
 	}
 }

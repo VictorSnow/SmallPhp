@@ -1,6 +1,8 @@
 <?php
 namespace Xend;
 
+use Xend\Event\Event;
+
 class Application{
 
     private $config;
@@ -9,8 +11,17 @@ class Application{
     private static $defaultConfig = array(
         'components' => array(
             'dispatcher'=> 'Xend\Dispacher',
-            'request' => 'Xend\Request'
+            'request' => 'Xend\Request',
+            'response' => 'Xend\Response',
+            'eventManager' => 'Xend\EventManager'
         ),
+        'config' => array(
+            'eventManager' =>array(
+                'events' => array(
+                    'dispatch::404' => 'Xend\Event\Page404'
+                )
+            )
+        )
     );
 
     private function __construct($config)
@@ -47,16 +58,26 @@ class Application{
     public function run()
     {
         $dispatchInfo = $this->dispatcher->dispatch($this->request);
-        // todo: handle 404
+
         if($dispatchInfo !== false)
         {
-            $controllerClass = $dispatchInfo['module'].'\\Controller\\'.$dispatchInfo['controller'];
-            $action = $dispatchInfo['action'];
-
-
+            $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.$dispatchInfo['controller'].'Controller';
+            $action = $dispatchInfo['action']."Action";
             $controller = new $controllerClass();
 
-            return $controller->$action();
+            $this->eventManager->trigger('dispatch::preAction',new Event(array(
+                'controller' => $controller,
+                'action' => $action
+            )));
+            $controller->app = $this;
+            $response = $controller->$action($dispatchInfo);
+
+            $this->eventManager->trigger('dispatch::postAction',new Event($response));
+
+            return $response;
+        }else{
+            $event = $this->eventManager->trigger('dispatch::404',new Event());
+            return $event->result;
         }
     }
 

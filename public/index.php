@@ -29,5 +29,6 @@
 
     $app = \Xend\Application::init($config);
 
-    $app->run();
+    $response = $app->run();
+    $response->sendResponse();
 	
