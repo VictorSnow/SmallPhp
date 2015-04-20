@@ -1,0 +1,6 @@
+{
+	"name": "victor/vlite",
+	"autoload": {
+		"psr-0":{"Xend":"lib"}
+	}
+}
