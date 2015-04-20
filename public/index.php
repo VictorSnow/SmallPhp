@@ -24,11 +24,12 @@
                 )
             )
         ),
+        'configCachePath' => APP_PATH."/cache/config.php",
+        'configCacheEnable' => true
     );
 
 
     $app = \Xend\Application::init($config);
 
     $response = $app->run();
-    $response->sendResponse();
 	

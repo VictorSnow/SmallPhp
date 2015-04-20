@@ -6,6 +6,7 @@ use Xend\Event\Event;
 class Application{
 
     private $config;
+    private $components;
     private static $instant;
 
     private static $defaultConfig = array(
@@ -26,7 +27,20 @@ class Application{
 
     private function __construct($config)
     {
-        $config = array_merge_recursive(self::$defaultConfig,$config);
+        $path = $config['configCachePath'];
+
+        if(file_exists($path) && $config['configCacheEnable'])
+        {
+            $config = include $path;
+        }else{
+            $config = array_merge_recursive(self::$defaultConfig,$config);
+
+            // cache config
+            if($config['configCacheEnable'])
+            {
+                $config['config']['eventManager']['events']['dispatch::postResponse'] = 'Xend\Event\MergeConfig';
+            }
+        }
         $this->config = $config;
     }
 
@@ -73,18 +87,25 @@ class Application{
             $response = $controller->$action($dispatchInfo);
 
             $this->eventManager->trigger('dispatch::postAction',new Event($response));
-
-            return $response;
         }else{
             $event = $this->eventManager->trigger('dispatch::404',new Event());
-            return $event->result;
+            $response = $event->result;
         }
+
+        $response->sendResponse();
+        $this->eventManager->trigger('dispatch::postResponse',new Event());
     }
 
     public function __get($name)
     {
         if($name == 'config')
+        {
             return $this->config;
+        }
+        elseif(isset($this->components[$name]))
+        {
+            return $this->components[$name];
+        }
         elseif(isset($this->config['components'][$name]))
         {
             $class = $this->config['components'][$name];
@@ -92,9 +113,9 @@ class Application{
             $config = array();
             if(isset($this->config['config'][$name]))
                 $config = $this->config['config'][$name];
-            $this->$name = new $class($config);
+            $this->components[$name] = new $class($config);
 
-            return $this->$name;
+            return $this->components[$name];
         }
         return null;
     }
