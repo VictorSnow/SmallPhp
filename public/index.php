@@ -22,14 +22,16 @@
                         'action' => 'index',
                     ),
                 )
+            ),
+            'view' => array(
+                'path' => APP_PATH."/lib/view/"
             )
         ),
         'configCachePath' => APP_PATH."/cache/config.php",
-        'configCacheEnable' => true
+        'configCacheEnable' => false
     );
 
 
     $app = \Xend\Application::init($config);
 
     $response = $app->run();
-	

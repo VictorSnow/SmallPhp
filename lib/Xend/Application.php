@@ -14,7 +14,8 @@ class Application{
             'dispatcher'=> 'Xend\Dispacher',
             'request' => 'Xend\Request',
             'response' => 'Xend\Response',
-            'eventManager' => 'Xend\EventManager'
+            'eventManager' => 'Xend\EventManager',
+            'view' => 'Xend\View'
         ),
         'config' => array(
             'eventManager' =>array(
@@ -29,7 +30,7 @@ class Application{
     {
         $path = $config['configCachePath'];
 
-        if(file_exists($path) && $config['configCacheEnable'])
+        if($config['configCacheEnable'] && file_exists($path))
         {
             $config = include $path;
         }else{
@@ -94,6 +95,17 @@ class Application{
 
         $response->sendResponse();
         $this->eventManager->trigger('dispatch::postResponse',new Event());
+    }
+
+
+    public function getNewInstant($name)
+    {
+        $class = $this->config['components'][$name];
+
+        $config = array();
+        if(isset($this->config['config'][$name]))
+            $config = $this->config['config'][$name];
+        return new $class($config);
     }
 
     public function __get($name)
