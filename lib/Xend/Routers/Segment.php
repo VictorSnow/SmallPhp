@@ -21,7 +21,6 @@ class Segment {
         $matches = array();
         if(preg_match('/\[\:(\w+)\]/',$item,$matches))
         {
-            echo $matches[1];
             return $matches[1];
         }
         return false;
