@@ -16,7 +16,8 @@ class Dispacher {
     private $instants = array();
 
     private static $routerMapper = array(
-        'literal' => 'Xend\Routers\Literal'
+        'literal' => 'Xend\Routers\Literal',
+        'regex' => 'Xend\Routers\Regex'
     );
 
     public function getRouter($type)

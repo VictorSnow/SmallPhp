@@ -21,6 +21,12 @@
                         'controller' => 'Index',
                         'action' => 'index',
                     ),
+                    array(
+                        'type' => 'regex',
+                        'url' => '^\/product\/(?P<productID>\d+)$',
+                        'controller' => 'Product',
+                        'action' => 'index',
+                    ),
                 )
             ),
             'view' => array(
