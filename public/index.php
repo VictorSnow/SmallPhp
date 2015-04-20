@@ -27,6 +27,12 @@
                         'controller' => 'Product',
                         'action' => 'index',
                     ),
+                    array(
+                        'type' => 'segment',
+                        'url' => '/[:controller]/id-[:id]',
+                        'controller' => 'Product',
+                        'action' => 'index',
+                    )
                 )
             ),
             'view' => array(

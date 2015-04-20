@@ -12,6 +12,6 @@ namespace Application\Controller;
 class ProductController {
     public function indexAction($routerInfo)
     {
-        
+        var_dump($routerInfo);
     }
 } 

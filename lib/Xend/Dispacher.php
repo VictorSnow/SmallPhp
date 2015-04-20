@@ -17,7 +17,8 @@ class Dispacher {
 
     private static $routerMapper = array(
         'literal' => 'Xend\Routers\Literal',
-        'regex' => 'Xend\Routers\Regex'
+        'regex' => 'Xend\Routers\Regex',
+        'segment' => 'Xend\Routers\Segment'
     );
 
     public function getRouter($type)
