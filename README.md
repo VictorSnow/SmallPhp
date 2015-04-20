@@ -1,6 +1,9 @@
 # SmallPhp
 lite framework 
 
-todo:
-1: add more routers
-2: view components
+###todo 
+
+######add more routers 
+######helper functions
+
+###the structure is not good at the time , easier to me to develop. latter will change it
