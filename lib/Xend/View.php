@@ -15,12 +15,26 @@ class View {
     private $_scriptPath = "";
     private $_script = "";
 
+    private $_layout = "";
+    public $enableLayout = true;
+
     public $childView = array();
 
 
     public function __construct($config)
     {
         $this->_scriptPath = $config['path'];
+        $this->_layout = $config['layout'];
+    }
+
+    public function getLayoutScript()
+    {
+        return $this->_layout;
+    }
+
+    public function setLayoutScript($layoutScript)
+    {
+        $this->_layout = $layoutScript;
     }
 
     public function setVar($name,$value)

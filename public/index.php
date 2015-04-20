@@ -36,7 +36,8 @@
                 )
             ),
             'view' => array(
-                'path' => APP_PATH."/lib/view/"
+                'path' => APP_PATH."/lib/view/",
+                'layout' => 'layout.php'
             )
         ),
         'configCachePath' => APP_PATH."/cache/config.php",

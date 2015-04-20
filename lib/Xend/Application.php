@@ -20,7 +20,8 @@ class Application{
         'config' => array(
             'eventManager' =>array(
                 'events' => array(
-                    'dispatch::404' => 'Xend\Event\Page404'
+                    'dispatch::404' => 'Xend\Event\Page404',
+                    'dispatch::postAction' =>'Xend\Event\View2Response'
                 )
             )
         )
@@ -89,11 +90,10 @@ class Application{
 
             $this->eventManager->trigger('dispatch::postAction',new Event($response));
         }else{
-            $event = $this->eventManager->trigger('dispatch::404',new Event());
-            $response = $event->result;
+            $this->eventManager->trigger('dispatch::404',new Event());
         }
 
-        $response->sendResponse();
+        $this->response->sendResponse();
         $this->eventManager->trigger('dispatch::postResponse',new Event());
     }
 

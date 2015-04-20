@@ -17,13 +17,6 @@ class IndexController {
             'name' => 'victor'
         ));
         $childView->setScript('index.php');
-
-        $this->app->view->addChildView('content',$childView);
-        $this->app->view->setScript('layout.php');
-
-        $content = $this->app->view->render();
-
-        $this->app->response->setResponse($content);
-        return $this->app->response;
+        return $childView;
     }
 } 
