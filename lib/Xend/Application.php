@@ -15,7 +15,8 @@ class Application{
             'request' => 'Xend\Request',
             'response' => 'Xend\Response',
             'eventManager' => 'Xend\EventManager',
-            'view' => 'Xend\View'
+            'view' => 'Xend\View',
+            'cache' => 'Xend\Cache\MemcachedClient'
         ),
         'config' => array(
             'eventManager' =>array(

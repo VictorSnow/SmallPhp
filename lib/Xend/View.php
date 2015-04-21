@@ -16,6 +16,7 @@ class View {
     private $_script = "";
 
     private $_layout = "";
+
     public $enableLayout = true;
 
     public $childView = array();

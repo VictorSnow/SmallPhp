@@ -7,3 +7,4 @@
  */
     echo $name;
 ?>
+<a href="http://localhost/vlite/public/index.php?r=/index/index">a</a>

@@ -28,6 +28,9 @@ class View2Response {
                 $view = $rootView;
             }
             $event->getResponse()->setResponse($view->render());
+        }elseif(is_string($response))
+        {
+            $event->getResponse()->setResponse($response);
         }
     }
 } 

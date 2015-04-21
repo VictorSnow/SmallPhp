@@ -12,6 +12,7 @@ namespace Application\Controller;
 class IndexController {
     public function indexAction()
     {
+        return "hello world<a href='http://localhost/vlite/public/index.php?r=/index/index'>haha</a>";
         $childView = $this->app->getNewInstant('view');
         $childView->setVars(array(
             'name' => 'victor'
