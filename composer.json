@@ -1,5 +1,5 @@
 {
-	"name": "victor/vlite",
+	"name": "victorsnow/smallphp",
 	"autoload": {
 		"psr-0":{
 			"Xend":"lib",
