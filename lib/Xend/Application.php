@@ -16,7 +16,8 @@ class Application{
             'response' => 'Xend\Response',
             'eventManager' => 'Xend\EventManager',
             'view' => 'Xend\View',
-            'cache' => 'Xend\Cache\MemcachedClient'
+            'cache' => 'Xend\Cache\MemcachedClient',
+            'db' => 'Xend\Db\Db'
         ),
         'config' => array(
             'eventManager' =>array(
@@ -80,13 +81,13 @@ class Application{
         {
             $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.$dispatchInfo['controller'].'Controller';
             $action = $dispatchInfo['action']."Action";
-            $controller = new $controllerClass();
+            $controller = new $controllerClass($this,$dispatchInfo);
 
             $this->eventManager->trigger('dispatch::preAction',new Event(array(
                 'controller' => $controller,
                 'action' => $action
             )));
-            $controller->app = $this;
+            //$controller->app = $this;
             $response = $controller->$action($dispatchInfo);
 
             $this->eventManager->trigger('dispatch::postAction',new Event($response));
