@@ -79,7 +79,7 @@ class Application{
 
         if($dispatchInfo !== false)
         {
-            $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.$dispatchInfo['controller'].'Controller';
+            $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.ucWords($dispatchInfo['controller']).'Controller';
             $action = $dispatchInfo['action']."Action";
             $controller = new $controllerClass($this,$dispatchInfo);
 
