@@ -31,6 +31,14 @@ class View2Response {
         }elseif(is_string($response))
         {
             $event->getResponse()->setResponse($response);
+        }elseif(is_array($response)){
+            header('Content-Type:text/json');
+            $event->getResponse()->setResponse(json_encode($response));
+        }else{
+            // 默认显示模版
+            $view = $event->getApplication()->view;
+            $view->setScript($view->getLayoutScript());
+            $event->getResponse()->setResponse($view->render());
         }
     }
 } 

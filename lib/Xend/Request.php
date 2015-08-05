@@ -23,6 +23,6 @@ class Request {
 
     public function getRequestURI()
     {
-        return $this->get['r'];
+        return $this->server['REQUEST_URI'];
     }
 } 
