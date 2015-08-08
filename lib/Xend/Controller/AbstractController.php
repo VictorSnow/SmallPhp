@@ -30,6 +30,10 @@ class AbstractController {
         return $this->app->db;
     }
     
+    public function getCache(){
+        return $this->app->cache;
+    }
+
     public function getView($params = array())
     {
         $view = $this->app->getNewInstant('view');
