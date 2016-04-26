@@ -10,7 +10,8 @@ namespace Xend\Event;
 
 use \Xend\View;
 
-class View2Response {
+class View2Response 
+{
     public function run(Event $event)
     {
         $response = $event->context;

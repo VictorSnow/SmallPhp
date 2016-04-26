@@ -23,6 +23,7 @@ class Request {
 
     public function getRequestURI()
     {
-        return $this->server['REQUEST_URI'];
+        $url = parse_url($this->server['REQUEST_URI'], PHP_URL_PATH);
+        return $url;
     }
 } 

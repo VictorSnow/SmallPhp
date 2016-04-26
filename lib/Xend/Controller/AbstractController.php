@@ -18,6 +18,9 @@ class AbstractController {
 
     public function __construct($app,$dispatchInfo)
     {
+        /**
+         * @var \Xend\Application
+         */
         $this->app = $app;
         $this->action = strtolower($dispatchInfo['action']);
         $this->controller = strtolower($dispatchInfo['controller']);
@@ -32,6 +35,17 @@ class AbstractController {
     
     public function getCache(){
         return $this->app->cache;
+    }
+
+    public function beforeAction()
+    {
+        return true;
+    }
+
+    public function redirect($url)
+    {
+        header('location: '.$url, true, 302);
+        exit;
     }
 
     public function getView($params = array())

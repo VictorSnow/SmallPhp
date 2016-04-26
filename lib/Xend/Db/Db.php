@@ -24,6 +24,7 @@ class Db {
             \PDO::ATTR_PERSISTENT => true,
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         ));
+        $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     public function getDb()
@@ -47,5 +48,12 @@ class Db {
             $resultSet[] = $row;
         }
         return $resultSet;
+    }
+
+    public function exec($sql, $binds = array())
+    {
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute($binds);
+        return $result;
     }
 } 

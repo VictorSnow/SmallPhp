@@ -46,6 +46,8 @@ class Application{
             }
         }
         $this->config = $config;
+        // auto boot session
+        session_start();
     }
 
     public static function getInstant()
@@ -87,8 +89,11 @@ class Application{
                 'controller' => $controller,
                 'action' => $action
             )));
-            //$controller->app = $this;
-            $response = $controller->$action($dispatchInfo);
+
+            if(($response = $controller->beforeAction($dispatchInfo)) === true)
+            {
+                $response = $controller->$action($dispatchInfo);
+            }
 
             $this->eventManager->trigger('dispatch::postAction',new Event($response));
         }else{
