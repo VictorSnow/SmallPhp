@@ -19,8 +19,7 @@ class Request {
 
         $this->router = null;
     }
-
-
+    
     public function getRequestURI()
     {
         $url = parse_url($this->server['REQUEST_URI'], PHP_URL_PATH);

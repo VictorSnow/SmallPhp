@@ -9,7 +9,8 @@
 namespace Xend\Event;
 
 
-class Page404 {
+class Page404
+{
     public function run(Event $event)
     {
         $response = $event->getResponse();

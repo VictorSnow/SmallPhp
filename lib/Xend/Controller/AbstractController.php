@@ -28,6 +28,11 @@ class AbstractController {
         $this->dispatchInfo = $dispatchInfo;
     }
 
+    public function getSession()
+    {
+        return $this->app->session;
+    }
+
     public function getDb()
     {
         return $this->app->db;

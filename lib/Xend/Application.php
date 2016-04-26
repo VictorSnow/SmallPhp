@@ -17,7 +17,9 @@ class Application{
             'eventManager' => 'Xend\EventManager',
             'view' => 'Xend\View',
             'cache' => 'Xend\Cache\MemcachedClient',
-            'db' => 'Xend\Db\Db'
+            'db' => 'Xend\Db\Db',
+            'session' => 'Xend\Session',
+            'errorHandler' => 'Xend\ErrorHandler'
         ),
         'config' => array(
             'eventManager' =>array(
@@ -46,8 +48,6 @@ class Application{
             }
         }
         $this->config = $config;
-        // auto boot session
-        session_start();
     }
 
     public static function getInstant()
@@ -77,6 +77,9 @@ class Application{
 
     public function run()
     {
+        // init exceptions handler
+        $this->errorHandler->initHandlers();
+
         $dispatchInfo = $this->dispatcher->dispatch($this->request);
 
         if($dispatchInfo !== false)

@@ -13,7 +13,8 @@ class Response {
 
     private static $statusMapper = array(
         '200' => 'OK',
-        '404'=> 'Not Found'
+        '404'=> 'Not Found',
+        '500' => 'SERVER ERROR'
     );
 
     private $content = "";
@@ -23,6 +24,7 @@ class Response {
     {
         $this->content = $content;
         $this->statusCode = $statusCode;
+        return $this;
     }
 
     public function sendResponse()
