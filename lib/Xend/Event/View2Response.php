@@ -18,7 +18,6 @@ class View2Response
 
         if($response instanceof View)
         {
-
             $view = $response;
             if($view->enableLayout)
             {

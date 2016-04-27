@@ -23,7 +23,7 @@ class ErrorHandler
         register_shutdown_function(array($this, 'fatalError'));
     }
 
-    public function exception($exception)
+    public function exception(\Exception $exception)
     {
         $this->endRequest($exception->getMessage());
     }
@@ -45,7 +45,7 @@ class ErrorHandler
 
     private function endRequest($message, $code = 500)
     {
-        Application::getInstant()->response->setResponse('Server Error：'.$message, $code)->sendResponse();
+        Application::getInstant()->response->setResponse('服务器出现错误：'.$message, $code)->sendResponse();
         exit;
     }
 }
