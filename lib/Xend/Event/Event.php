@@ -9,11 +9,11 @@
 namespace Xend\Event;
 
 
-class Event {
+class Event 
+{
 
     public $stoped = false;
     public $result = null;
-
     public $context;
 
     public function __construct($context = null)

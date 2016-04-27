@@ -7,6 +7,7 @@ class Record
     public $_tableName = __CLASS__;
     public $_attributes = array();
     public $_values = array();
+    public $_errors = array();
 
     public function __construct($attributes = array())
     {

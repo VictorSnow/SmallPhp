@@ -16,7 +16,7 @@ class AbstractController {
 
     protected  $dispatchInfo;
 
-    public function __construct($app,$dispatchInfo)
+    public function __construct($app, $dispatchInfo)
     {
         /**
          * @var \Xend\Application

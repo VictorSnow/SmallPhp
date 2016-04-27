@@ -9,7 +9,8 @@
 namespace Xend\Routers;
 
 
-class Regex {
+class Regex 
+{
     public function match($url,$routerConfig)
     {
         $pattern = "/".$routerConfig['url']."/";

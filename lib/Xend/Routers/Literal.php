@@ -9,7 +9,8 @@
 namespace Xend\Routers;
 
 
-class Literal {
+class Literal 
+{
     public function match($url,$routerConfig)
     {
         if($url == $routerConfig['url'])

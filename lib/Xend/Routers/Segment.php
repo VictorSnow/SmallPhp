@@ -14,7 +14,8 @@ namespace Xend\Routers;
  * not fully support the segment
  * @package Xend\Routers
  */
-class Segment {
+class Segment 
+{
 
     private function isSegmentItem($item)
     {

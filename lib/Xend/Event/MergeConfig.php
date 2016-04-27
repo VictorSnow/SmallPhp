@@ -9,7 +9,8 @@
 namespace Xend\Event;
 
 
-class MergeConfig {
+class MergeConfig 
+{
     public function run(Event $event)
     {
         $config = $event->getApplication()->config;
