@@ -19,7 +19,8 @@ class Application{
             'cache' => 'Xend\Cache\MemcachedClient',
             'db' => 'Xend\Db\Db',
             'session' => 'Xend\Session',
-            'errorHandler' => 'Xend\ErrorHandler'
+            'errorHandler' => 'Xend\ErrorHandler',
+            'moduleManager' => 'Xend\ModuleManager'
         ),
         'config' => array(
             'eventManager' =>array(
@@ -84,7 +85,11 @@ class Application{
 
         if($dispatchInfo !== false)
         {
-            $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.ucWords($dispatchInfo['controller']).'Controller';
+            // bootstrap module
+            $this->moduleManager->loadModule($dispatchInfo['module']);
+
+            // controller
+            $controllerClass = '\\'.$dispatchInfo['module'].'\\Controller\\'.ucfirst($dispatchInfo['controller']).'Controller';
             $action = $dispatchInfo['action']."Action";
             $controller = new $controllerClass($this,$dispatchInfo);
 
